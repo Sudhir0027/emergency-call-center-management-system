@@ -1,0 +1,4 @@
+import { Link } from "react-router-dom";
+import PriorityBadge from "./PriorityBadge";
+import StatusBadge from "./StatusBadge";
+export default function CallTable({calls}){return <div className="overflow-x-auto"><table className="w-full text-sm"><thead><tr className="text-left text-xs uppercase text-slate-500 border-b"><th className="p-3">ID</th><th>Emergency</th><th>Location</th><th>Priority</th><th>Status</th><th></th></tr></thead><tbody>{calls.map(c=><tr key={c.call_id} className="border-b last:border-0 hover:bg-slate-50"><td className="p-3 font-semibold">#{c.call_id}</td><td>{c.emergency_type}</td><td>{c.location}</td><td><PriorityBadge value={c.priority}/></td><td><StatusBadge value={c.status}/></td><td><Link className="text-red-600 font-medium" to={`/calls/${c.call_id}`}>View</Link></td></tr>)}</tbody></table></div>}
