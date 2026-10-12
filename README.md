@@ -1,35 +1,44 @@
-# Emergency Call Center Management System
+# Emergency Call Center - Streamlit + FastAPI
 
-Complete React + Tailwind + FastAPI + SQLite college project.
+This is a simple emergency call center project beside the existing React application. It contains:
 
-## Run
-Backend:
-```bash
-cd backend
-python -m venv venv
-venv\Scripts\activate
+- `backend`: FastAPI REST API for registering calls, listing the priority queue, updating statuses, and dashboard counts
+- `frontend`: Streamlit user interface for call intake and queue management
+
+## Backend
+
+From `streamlit-fastapi\backend`:
+
+```powershell
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
 pip install -r requirements.txt
-copy .env.example .env
 uvicorn app.main:app --reload
 ```
 
-Frontend:
-```bash
-cd frontend
-npm install
-npm run dev
+The API runs at `http://127.0.0.1:8000`.
+
+- Health check: `http://127.0.0.1:8000/health`
+- API documentation: `http://127.0.0.1:8000/docs`
+
+## Frontend
+
+From `streamlit-fastapi\frontend`:
+
+```powershell
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+streamlit run streamlit_app.py
 ```
 
-Open `http://localhost:5173`.
+The UI runs at `http://localhost:8501`.
 
-Demo accounts:
-- admin / Admin@123
-- operator / Operator@123
+If the API uses another URL, set it before starting Streamlit:
 
-Swagger: `http://localhost:8000/swagger`
+```powershell
+$env:API_URL = "http://127.0.0.1:8000"
+streamlit run streamlit_app.py
+```
 
-Priority queue:
-`priority DESC`, then `call_id ASC`.
-
-Example:
-102 → 103 → 105 → 101 → 104
+Calls are stored in memory for this simple starter and are cleared when the API restarts.
