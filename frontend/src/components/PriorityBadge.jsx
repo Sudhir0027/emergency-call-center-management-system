@@ -1,2 +1,0 @@
-const map={5:["CRITICAL","bg-red-100 text-red-700"],4:["VERY HIGH","bg-orange-100 text-orange-700"],3:["HIGH","bg-amber-100 text-amber-700"],2:["MEDIUM","bg-blue-100 text-blue-700"],1:["LOW","bg-slate-100 text-slate-600"]};
-export default function PriorityBadge({value}){const [t,c]=map[value]||["UNKNOWN","bg-slate-100 text-slate-600"];return <span className={`px-2 py-1 rounded-full text-xs font-semibold ${c}`}>{value} · {t}</span>}
